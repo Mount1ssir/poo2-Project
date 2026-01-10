@@ -17,8 +17,11 @@ public class Ordonnance {
 		return this.code;
 	}
 
-	public void ajouterMedicament(Medicament e,int quantite){
-		medicamentsQuantite.put(e,quantite);
+	public void ajouterMedicament(Medicament e,int quantite)throws QuantiteInsuffisanteException {
+		if (quantite > e.getQuantite()) {
+			throw new QuantiteInsuffisanteException("le stock est insufisant !!");
+		}else {medicamentsQuantite.put(e,quantite);}
+		
 	}
 	public void supprimerMedicament(Medicament e){
         medicamentsQuantite.remove(e);
@@ -71,7 +74,7 @@ public class Ordonnance {
 		st += "Cout de la consultation : "+consultation.calculerCout()+" DH"+"\n";
 		st += "Medicaments prescrits : "+"\n"+"   ";
 		st += "     STATUS DE PAIEMENT  : "+estPayee+"\n"+"  ";
-		st += ((estPayee)?"MERCIE! a bonne santée ":"n'est pas encour payee");
+		st += ((estPayee)?"MERCIE! a bonne santée ":"khlass a sga3");
 		for (Map.Entry<Medicament,Integer> val : medicamentsQuantite.entrySet()){
 			st=st+val.getKey().getNom() +" : "+val.getValue()+" ("+val.getKey().getPrix()+" DH par unité)\n"+"   ";
 		}
@@ -111,7 +114,6 @@ public class Ordonnance {
 		OrdonnanceGUI.afficherOrdonnance(this);
 	}
 }
-
 
 
 
