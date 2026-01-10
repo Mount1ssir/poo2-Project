@@ -71,7 +71,7 @@ public class Ordonnance {
 		st += "Cout de la consultation : "+consultation.calculerCout()+" DH"+"\n";
 		st += "Medicaments prescrits : "+"\n"+"   ";
 		st += "     STATUS DE PAIEMENT  : "+estPayee+"\n"+"  ";
-		st += ((estPayee)?"MERCIE! a bonne santée ":"khlass a sga3");
+		st += ((estPayee)?"MERCIE! a bonne santée ":"n'est pas encour payee");
 		for (Map.Entry<Medicament,Integer> val : medicamentsQuantite.entrySet()){
 			st=st+val.getKey().getNom() +" : "+val.getValue()+" ("+val.getKey().getPrix()+" DH par unité)\n"+"   ";
 		}
@@ -111,6 +111,7 @@ public class Ordonnance {
 		OrdonnanceGUI.afficherOrdonnance(this);
 	}
 }
+
 
 
 
